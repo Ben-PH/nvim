@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local wk = require('which-key')
 
 lsp.preset('recommended')
 lsp.ensure_installed({
@@ -9,7 +10,11 @@ lsp.ensure_installed({
 lsp.on_attach(function (client, bufnr)
 	local opts = {buffer = bufnr, remap = false}
 
-	vim.keymap.set("n", ",gd", function() vim.lsp.buf.definition() end, opts) 
-	
+	wk.register({
+		g = { 
+			name = "goto", 
+			d = { function() vim.lsp.buf.definition() end, "definition", buffer = bufnr, noremap = true },
+		},
+	},{prefix = ","})
 end)
 lsp.setup()
