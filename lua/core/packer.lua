@@ -113,5 +113,6 @@ return require('packer').startup(function(use)
 			}
 		end
 	}
+	use 'airblade/vim-rooter'
 
 end)
