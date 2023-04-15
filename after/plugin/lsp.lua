@@ -14,8 +14,15 @@ lsp.on_attach(function(client, bufnr)
 		g = {
 			name = "goto",
 			d = { function() vim.lsp.buf.definition() end, "definition", buffer = bufnr, noremap = true },
+			r = { "<cmd>Telescop lsp_references<cr>", "references" },
 		},
 		f = { function() vim.lsp.buf.format() end, "lsp format" },
 	}, { prefix = "," })
 end)
+lsp.format_on_save({
+	servers = {
+		['lua_ls'] = { 'lua' },
+		['rust_analyzer'] = { 'rust' },
+	}
+})
 lsp.setup()
