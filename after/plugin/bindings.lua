@@ -15,6 +15,10 @@ wk.register({
 		b = { builtin.buffers, "buffer search" },
 		h = { builtin.help_tags, "help search" },
 	},
+	g = {
+		name = "git",
+		s = {"<cmd>Git<cr>", "Git"},
+	},
 	h = { 
 		name = "Harpoon", 
 		a = { mark.add_file, "Add mark" },
