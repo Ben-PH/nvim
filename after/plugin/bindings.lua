@@ -1,8 +1,8 @@
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
-
 local builtin = require('telescope.builtin')
 local wk = require("which-key")
+
 wk.register({
 	a = { 
 		name = "application", 
@@ -14,6 +14,7 @@ wk.register({
 		g = { builtin.live_grep, "live-grep" },
 		b = { builtin.buffers, "buffer search" },
 		h = { builtin.help_tags, "help search" },
+		d = { vim.cmd.Ex, "explore directories" },
 	},
 	g = {
 		name = "git",
@@ -26,16 +27,12 @@ wk.register({
 	},
 },{prefix = "<leader>"})
 
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
 vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
 vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
 vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
 
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Moeve things up and down, respecting indent
