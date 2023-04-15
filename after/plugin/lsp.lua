@@ -7,14 +7,15 @@ lsp.ensure_installed({
 })
 
 
-lsp.on_attach(function (client, bufnr)
-	local opts = {buffer = bufnr, remap = false}
+lsp.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
 
 	wk.register({
-		g = { 
-			name = "goto", 
+		g = {
+			name = "goto",
 			d = { function() vim.lsp.buf.definition() end, "definition", buffer = bufnr, noremap = true },
 		},
-	},{prefix = ","})
+		f = { function() vim.lsp.buf.format() end, "lsp format" },
+	}, { prefix = "," })
 end)
 lsp.setup()
