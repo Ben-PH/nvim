@@ -2,6 +2,10 @@
 local builtin = require('telescope.builtin')
 local wk = require("which-key")
 wk.register({
+	a = { 
+		name = "application", 
+		u = { vim.cmd.UndotreeToggle, "Undo Tree" },
+	},
 	s = { 
 		name = "search", 
 		f = { builtin.find_files, "file search" },
