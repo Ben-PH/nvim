@@ -11,6 +11,14 @@ return require('packer').startup(function(use)
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
 	use({ 'rose-pine/neovim', as = 'rose-pine' })
+	use({
+		'TimUntersberger/neogit',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'sindrets/diffview.nvim'
+		}
+	})
+	--use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
 	vim.cmd('colorscheme rose-pine')
 
@@ -19,7 +27,6 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
-	use('tpope/vim-fugitive')
 
 
 
@@ -53,9 +60,11 @@ return require('packer').startup(function(use)
 			use { 'mfussenegger/nvim-dap' },
 		}
 	}
-	use { "folke/which-key.nvim" }
+	use("folke/which-key.nvim")
 
-	use { 'anuvyklack/hydra.nvim' }
+	-- hydra for the git thing
+	-- use('lewis6991/gitsigns.nvim')
+	-- use('anuvyklack/hydra.nvim')
 	-- use {
 	-- 	"ben/bindings",
 	-- 	config = function()

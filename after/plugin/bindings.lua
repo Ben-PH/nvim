@@ -18,7 +18,7 @@ wk.register({
 	-- lots of TODO here
 	g = {
 		name = "git",
-		s = { "<cmd>Git<cr>", "Git" },
+		s = { "<cmd>Neogit<cr>", "Git" },
 	},
 	h = {
 		name = "Harpoon",
@@ -27,14 +27,13 @@ wk.register({
 	},
 	f = {
 		name = "file",
-		s = { "<cmd>update<cr>", "save"},
+		s = { "<cmd>update<cr>", "save" },
 	},
 	b = {
 		name = "buffer",
-		d = {"<cmd>bd<cr>", "delete"},
+		d = { "<cmd>bd<cr>", "delete" },
 		b = { builtin.buffers, "list" },
 	},
-
 }, { prefix = "<leader>" })
 
 -- harpoon TODO: use harpoon nicely
@@ -73,6 +72,6 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 
 -- live sed of word under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "Q", "<nop>")
