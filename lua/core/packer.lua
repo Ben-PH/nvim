@@ -53,9 +53,9 @@ return require('packer').startup(function(use)
 			use { 'mfussenegger/nvim-dap' },
 		}
 	}
-	use {
-		"folke/which-key.nvim",
-	}
+	use { "folke/which-key.nvim" }
+
+	use { 'anuvyklack/hydra.nvim' }
 	-- use {
 	-- 	"ben/bindings",
 	-- 	config = function()
