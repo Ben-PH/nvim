@@ -89,3 +89,4 @@ tele.setup{
 }
 tele.load_extension('noice')
 tele.load_extension('file_browser')
+tele.load_extension('projects')
