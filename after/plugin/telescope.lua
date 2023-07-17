@@ -1,4 +1,5 @@
-require('telescope').setup{
+local tele = require('telescope')
+tele.setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
@@ -31,3 +32,4 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+tele.load_extension('noice')
