@@ -42,4 +42,5 @@ return require('packer').startup(function(use)
 
   use ("folke/zen-mode.nvim")
   use ("folke/trouble.nvim")
+  use { 'tanvirtin/vgit.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 end)
