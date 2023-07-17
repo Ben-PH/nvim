@@ -19,9 +19,11 @@ lsp.set_preferences({
     }
 })
 
+local navbuddy = require("nvim-navbuddy")
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
   -- remaps here
+  navbuddy.attach(client, bufnr)
 end)
 
 lsp.setup()
