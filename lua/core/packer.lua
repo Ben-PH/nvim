@@ -73,4 +73,6 @@ return require('packer').startup(function(use)
           "nvim-telescope/telescope.nvim" -- Optional
       }
   }
+
+  use ("ggandor/leap.nvim")
 end)
