@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local lspconf = require("lspconfig")
 
 lsp.preset("recommended")
 
@@ -24,6 +25,7 @@ lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
   -- remaps here
   navbuddy.attach(client, bufnr)
+  vim.keymap.set("n", ",gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 end)
 
 lsp.setup()
