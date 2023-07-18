@@ -9,5 +9,6 @@ wk.register({
     ["<M-c>"] = { "<cmd>bp<CR>", "previous buffer" },
     ["<M-r>"] = { "<cmd>bn<CR>", "next buffer" },
     ["<M-/>"] = { "<cmd>nohlsearch<CR>", "Clear highlights" },
+    ["<M-?>"] = { "<cmd>Commands<CR>", "commands" },
     --["<M->"] = {"<cmd><CR>", ""},
 })
