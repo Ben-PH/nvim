@@ -1,0 +1,20 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: lua-style
+        uses: JohnnyMorganz/stylua-action@v3
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.18.1
+          args: --check .
+
+      - name: Luacheck linter
+        uses: lunarmodules/luacheck@v1
+
