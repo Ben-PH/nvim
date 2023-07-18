@@ -45,7 +45,7 @@ require("which-key").setup({
 	window = {
 		border = "none", -- none, single, double, shadow
 		position = "bottom", -- bottom, top
-                -- extra window margin [top, right, bottom, left].
+		-- extra window margin [top, right, bottom, left].
 		-- When between 0 and 1, will be treated as a percentage of the screen size.
 		margin = { 0, 0, 0, 0 },
 		padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]

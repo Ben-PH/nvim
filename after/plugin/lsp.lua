@@ -29,23 +29,23 @@ end)
 
 lsp.setup()
 
-require'lspconfig'.lua_ls.setup {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }, -- if you're using `vim` global
-                enable = true,
-            },
-            runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-            workspace = {
-                library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                },
-            },
-        },
-    },
-}
+require("lspconfig").lua_ls.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" }, -- if you're using `vim` global
+				enable = true,
+			},
+			runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+				},
+			},
+		},
+	},
+})
 
 vim.diagnostic.config({
 	virtual_text = true,
