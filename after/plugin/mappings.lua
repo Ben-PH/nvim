@@ -13,7 +13,7 @@ wk.register({
     --["<M->"] = {"<cmd><CR>", ""},
 })
 
-local general_lsp_bindings = function(client, bufnr)
+local general_lsp_bindings = function()
     wk.register({
 
         ["<M-a>"] = { vim.lsp.buf.code_action, "Lsp: code-actions" },
@@ -24,7 +24,6 @@ local general_lsp_bindings = function(client, bufnr)
         r = { vim.lsp.buf.rename, "rename" },
     }, { name = "Lsp", prefix = "<M-L>" })
 end
-
 
 local lsp = require("lspconfig")
 
