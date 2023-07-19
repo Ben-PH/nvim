@@ -21,7 +21,11 @@ return require("packer").startup(function(use)
     })
     use({
         "simrat39/rust-tools.nvim",
-        requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap" },
+        requires = {
+            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+        },
     })
     use("ahmedkhalf/project.nvim")
 
@@ -70,7 +74,6 @@ return require("packer").startup(function(use)
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     })
-
 
     use("ggandor/leap.nvim")
 end)

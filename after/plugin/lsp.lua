@@ -7,7 +7,6 @@ lsp.ensure_installed({
     "lua_ls",
 })
 
-
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
@@ -17,7 +16,6 @@ lsp.set_preferences({
         info = "I",
     },
 })
-
 
 lsp.setup()
 
