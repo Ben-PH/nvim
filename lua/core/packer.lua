@@ -19,14 +19,7 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     })
-    use({
-        "simrat39/rust-tools.nvim",
-        requires = {
-            "neovim/nvim-lspconfig",
-            "nvim-lua/plenary.nvim",
-            "mfussenegger/nvim-dap",
-        },
-    })
+
     use("ahmedkhalf/project.nvim")
 
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -45,9 +38,9 @@ return require("packer").startup(function(use)
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
+            { "saadparwaiz1/cmp_luasnip" },
 
             -- Snippets
             { "L3MON4D3/LuaSnip" },
@@ -56,7 +49,11 @@ return require("packer").startup(function(use)
     })
 
     use("folke/zen-mode.nvim")
-    use("folke/trouble.nvim")
+
+    use({
+        "folke/trouble.nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
+    })
     use({ "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } })
     use({
         "folke/noice.nvim",

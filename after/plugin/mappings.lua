@@ -1,4 +1,6 @@
 local wk = require("which-key")
+local trouble = require("trouble")
+local foo = ""
 
 wk.register({
 
@@ -10,6 +12,10 @@ wk.register({
     ["<M-r>"] = { "<cmd>bn<CR>", "next buffer" },
     ["<M-/>"] = { "<cmd>nohlsearch<CR>", "Clear highlights" },
     ["<M-?>"] = { "<cmd>Commands<CR>", "commands" },
+    ["<M-A>"] = { trouble.previous({skip_groups = true, jump = true}), "Trouble: prev-item" },
+    ["<M-U>"] = { trouble.next({skip_groups = true, jump = true}), "Trouble: next-item" },
+    ["<M-O>"] = { trouble.previous({skip_groups = true, jump = true}), "Trouble: prev-group" },
+    ["<M-E>"] = { trouble.next({skip_groups = true, jump = true}), "Trouble: next-group" },
     --["<M->"] = {"<cmd><CR>", ""},
 })
 

@@ -1,5 +1,9 @@
 local tele = require("telescope")
 local fb_actions = require("telescope._extensions.file_browser.actions")
+
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
 tele.setup({
     defaults = {
         -- Default configuration for telescope goes here:
@@ -10,7 +14,9 @@ tele.setup({
                 -- actions.which_key shows the mappings for your picker,
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = "which_key",
+                ["<c-t>"] = trouble.open_with_trouble,
             },
+            n = { ["<c-t>"] = trouble.open_with_trouble },
         },
     },
     pickers = {
