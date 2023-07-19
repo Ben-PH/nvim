@@ -1,6 +1,10 @@
 vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim" })
+    use({
+        "junegunn/fzf.vim",
+        requires = { "junegunn/fzf", run = ":call fzf#install()" },
+    })
 
     use({
         "folke/which-key.nvim",
@@ -14,6 +18,14 @@ return require("packer").startup(function(use)
     use({
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    })
+    use({
+        "simrat39/rust-tools.nvim",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+        },
     })
     use("ahmedkhalf/project.nvim")
 
@@ -63,17 +75,5 @@ return require("packer").startup(function(use)
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     })
 
-    use({
-        "SmiteshP/nvim-navbuddy",
-        requires = {
-            "neovim/nvim-lspconfig",
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim",
-            "numToStr/Comment.nvim", -- Optional
-            "nvim-telescope/telescope.nvim", -- Optional
-        },
-    })
-
     use("ggandor/leap.nvim")
-    use("ThePrimeagen/harpoon")
 end)

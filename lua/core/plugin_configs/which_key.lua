@@ -99,3 +99,6 @@ require("which-key").setup({
         filetypes = {},
     },
 })
+require("which-key").register({
+    ["<M-w>"] = { "<cmd>WhichKey<cr>", "toggle WhichKey" },
+})
