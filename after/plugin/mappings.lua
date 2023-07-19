@@ -12,3 +12,30 @@ wk.register({
     ["<M-?>"] = { "<cmd>Commands<CR>", "commands" },
     --["<M->"] = {"<cmd><CR>", ""},
 })
+
+
+local general_lsp_bindings = function(client, bufnr)
+    wk.register({
+
+        ["<M-a>"] = { vim.lsp.buf.code_action, "Lsp: code-actions" },
+        ["<M-G>"] = { vim.lsp.buf.definition, "Lsp: Definition" },
+        ["<M-R>"] = { vim.lsp.buf.references, "Lsp: References" },
+
+    })
+    wk.register({
+	r = { vim.lsp.buf.rename, "rename" },
+    }, {name = "Lsp", prefix = "<M-L>"})
+end
+
+local rust_lsp_bindings = function(client, bufnr)
+    
+end
+
+local lsp = require("lspconfig")
+
+
+lsp.lua_ls.setup{on_attach = general_lsp_bindings}
+lsp.rust_analyzer.setup{on_attach = general_lsp_bindings}
+
+
+
