@@ -1,14 +1,28 @@
 local tele = require("telescope")
 local fb_actions = require("telescope._extensions.file_browser.actions")
-
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
 local state = require("telescope.actions.state")
+
+-- When open a new project window, target a specific file
+local function tmux_select_file(inner_bufnr, project_path)
+    local file_entry = state.get_selected_entry(inner_bufnr)
+    local file_path = file_entry.value
+
+    local tmux_cmd = string.format(
+	"tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
+	project_path, -- Create the tmux home for the project
+	project_path, -- set nvim's working directory to the project path
+	file_path -- open the selected file
+    )
+
+    os.execute(tmux_cmd)
+    actions.close(inner_bufnr)
+end
 
 -- Tmuxified project selection
 local function tmux_proj(prompt_bufnr)
-    local entry = state.get_selected_entry(prompt_bufnr)
-    local project_path = entry.path
+    local selected = state.get_selected_entry(prompt_bufnr)
+    local project_path = selected.path
 
     actions.close(prompt_bufnr)
 
@@ -23,21 +37,8 @@ local function tmux_proj(prompt_bufnr)
         require("telescope.builtin").find_files({
             cwd = project_path,
             attach_mappings = function(_, map)
-                map("i", "<CR>", function(inner_bufnr)
-                    local file_entry = state.get_selected_entry(inner_bufnr)
-                    local file_path = file_entry.value
-
-                    local tmux_cmd = string.format(
-                        "tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
-                        project_path, -- Create the tmux home for the project
-                        project_path, -- set nvim's working directory to the project path
-                        file_path -- open the selected file
-                    )
-
-                    os.execute(tmux_cmd)
-                    actions.close(inner_bufnr)
-                end)
-                return true
+                map("i", "<CR>", function(inner_bufnr) tmux_select_file(inner_bufnr, project_path) end)
+                map("n", "<CR>", function(inner_bufnr) tmux_select_file(inner_bufnr, project_path) end)
             end,
         })
     end
