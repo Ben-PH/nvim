@@ -54,7 +54,6 @@ tele.setup({
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = "which_key",
             },
-            n = { ["<c-t>"] = trouble.open_with_trouble },
         },
     },
     pickers = {
