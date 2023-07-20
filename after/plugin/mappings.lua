@@ -7,15 +7,27 @@ wk.register({
     ["<M-b>"] = { "<cmd>Buffers<CR>", "Buffers" },
     ["<M-g>"] = { "<cmd>Rg!<CR>", "grep" },
     ["<M-f>"] = { "<cmd>Files<CR>", "find files" },
-    ["<M-l>"] = { "<cmd>Telescope projects<CR>", "list projects" },
+    ["<M-l>"] = { "<cmd>Telescope project<CR>", "list projects" },
     ["<M-c>"] = { "<cmd>bp<CR>", "previous buffer" },
     ["<M-r>"] = { "<cmd>bn<CR>", "next buffer" },
     ["<M-/>"] = { "<cmd>nohlsearch<CR>", "Clear highlights" },
     ["<M-?>"] = { "<cmd>Commands<CR>", "commands" },
-    ["<M-A>"] = { trouble.previous({skip_groups = true, jump = true}), "Trouble: prev-item" },
-    ["<M-U>"] = { trouble.next({skip_groups = true, jump = true}), "Trouble: next-item" },
-    ["<M-O>"] = { trouble.previous({skip_groups = true, jump = true}), "Trouble: prev-group" },
-    ["<M-E>"] = { trouble.next({skip_groups = true, jump = true}), "Trouble: next-group" },
+    ["<M-A>"] = {
+        trouble.previous({ skip_groups = true, jump = true }),
+        "Trouble: prev-item",
+    },
+    ["<M-U>"] = {
+        trouble.next({ skip_groups = true, jump = true }),
+        "Trouble: next-item",
+    },
+    ["<M-O>"] = {
+        trouble.previous({ skip_groups = true, jump = true }),
+        "Trouble: prev-group",
+    },
+    ["<M-E>"] = {
+        trouble.next({ skip_groups = true, jump = true }),
+        "Trouble: next-group",
+    },
     --["<M->"] = {"<cmd><CR>", ""},
 })
 

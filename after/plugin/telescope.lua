@@ -3,6 +3,45 @@ local fb_actions = require("telescope._extensions.file_browser.actions")
 
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
+local state = require("telescope.actions.state")
+
+-- Tmuxified project selection
+local function tmux_proj(prompt_bufnr)
+    local entry = state.get_selected_entry(prompt_bufnr)
+    local project_path = entry.path
+
+    actions.close(prompt_bufnr)
+
+    -- Check if the tmux window for the project already exists
+    local tmux_windows = io.popen("tmux list-windows -F '#W'"):read("*a")
+    if tmux_windows:find(project_path, 1, true) then
+        -- The tmux window for the project exists, so switch to it immediately
+        local tmux_cmd = string.format("tmux select-window -t %s", project_path)
+        os.execute(tmux_cmd)
+    else
+        -- The tmux window for the project doesn't exist, so open the file picker in that directory
+        require("telescope.builtin").find_files({
+            cwd = project_path,
+            attach_mappings = function(_, map)
+                map("i", "<CR>", function(inner_bufnr)
+                    local file_entry = state.get_selected_entry(inner_bufnr)
+                    local file_path = file_entry.value
+
+                    local tmux_cmd = string.format(
+                        "tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
+                        project_path, -- Create the tmux home for the project
+                        project_path, -- set nvim's working directory to the project path
+                        file_path -- open the selected file
+                    )
+
+                    os.execute(tmux_cmd)
+                    actions.close(inner_bufnr)
+                end)
+                return true
+            end,
+        })
+    end
+end
 
 tele.setup({
     defaults = {
@@ -14,7 +53,6 @@ tele.setup({
                 -- actions.which_key shows the mappings for your picker,
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = "which_key",
-                ["<c-t>"] = trouble.open_with_trouble,
             },
             n = { ["<c-t>"] = trouble.open_with_trouble },
         },
@@ -91,8 +129,11 @@ tele.setup({
                 },
             },
         },
+        project = {
+            on_project_selected = function(bufnr) tmux_proj(bufnr) end,
+        },
     },
 })
 tele.load_extension("noice")
 tele.load_extension("file_browser")
-tele.load_extension("projects")
+tele.load_extension("project")

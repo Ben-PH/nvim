@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     })
 
-    use("ahmedkhalf/project.nvim")
+    use("nvim-telescope/telescope-project.nvim")
 
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("theprimeagen/harpoon")
