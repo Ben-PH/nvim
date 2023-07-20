@@ -1,5 +1,62 @@
 local tele = require("telescope")
 local fb_actions = require("telescope._extensions.file_browser.actions")
+local actions = require("telescope.actions")
+local state = require("telescope.actions.state")
+
+-- When open a new project window, target a specific file
+local function tmux_select_file(inner_bufnr, project_path)
+    local file_entry = state.get_selected_entry(inner_bufnr)
+    local file_path = file_entry.value
+
+    local tmux_cmd = string.format(
+        "tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
+        project_path, -- Create the tmux home for the project
+        project_path, -- set nvim's working directory to the project path
+        file_path -- open the selected file
+    )
+
+    os.execute(tmux_cmd)
+    actions.close(inner_bufnr)
+end
+
+-- Tmuxified project selection
+local function tmux_proj(prompt_bufnr)
+    local selected = state.get_selected_entry(prompt_bufnr)
+    local project_path = selected.path
+
+    actions.close(prompt_bufnr)
+
+    -- Check if the tmux window for the project already exists
+    local tmux_windows = io.popen("tmux list-windows -F '#W'"):read("*a")
+    if tmux_windows:find(project_path, 1, true) then
+        -- The tmux window for the project exists, so switch to it immediately
+        local tmux_cmd = string.format("tmux select-window -t %s", project_path)
+        os.execute(tmux_cmd)
+    else
+        -- The tmux window for the project doesn't exist, so open the file picker in that directory
+        require("telescope.builtin").find_files({
+            cwd = project_path,
+            attach_mappings = function(_, map)
+                map(
+                    "i",
+                    "<CR>",
+                    function(inner_bufnr)
+                        tmux_select_file(inner_bufnr, project_path)
+                    end
+                )
+                map(
+                    "n",
+                    "<CR>",
+                    function(inner_bufnr)
+                        tmux_select_file(inner_bufnr, project_path)
+                    end
+                )
+                return true
+            end,
+        })
+    end
+end
+
 tele.setup({
     defaults = {
         -- Default configuration for telescope goes here:
@@ -85,8 +142,11 @@ tele.setup({
                 },
             },
         },
+        project = {
+            on_project_selected = function(bufnr) tmux_proj(bufnr) end,
+        },
     },
 })
 tele.load_extension("noice")
 tele.load_extension("file_browser")
-tele.load_extension("projects")
+tele.load_extension("project")
