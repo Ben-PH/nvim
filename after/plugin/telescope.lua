@@ -51,6 +51,7 @@ local function tmux_proj(prompt_bufnr)
                         tmux_select_file(inner_bufnr, project_path)
                     end
                 )
+                return true
             end,
         })
     end
