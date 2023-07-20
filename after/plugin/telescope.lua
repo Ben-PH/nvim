@@ -9,10 +9,10 @@ local function tmux_select_file(inner_bufnr, project_path)
     local file_path = file_entry.value
 
     local tmux_cmd = string.format(
-	"tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
-	project_path, -- Create the tmux home for the project
-	project_path, -- set nvim's working directory to the project path
-	file_path -- open the selected file
+        "tmux new-window -n %s \"nvim -c 'cd %s' -c 'edit %s'\"",
+        project_path, -- Create the tmux home for the project
+        project_path, -- set nvim's working directory to the project path
+        file_path -- open the selected file
     )
 
     os.execute(tmux_cmd)
@@ -37,8 +37,20 @@ local function tmux_proj(prompt_bufnr)
         require("telescope.builtin").find_files({
             cwd = project_path,
             attach_mappings = function(_, map)
-                map("i", "<CR>", function(inner_bufnr) tmux_select_file(inner_bufnr, project_path) end)
-                map("n", "<CR>", function(inner_bufnr) tmux_select_file(inner_bufnr, project_path) end)
+                map(
+                    "i",
+                    "<CR>",
+                    function(inner_bufnr)
+                        tmux_select_file(inner_bufnr, project_path)
+                    end
+                )
+                map(
+                    "n",
+                    "<CR>",
+                    function(inner_bufnr)
+                        tmux_select_file(inner_bufnr, project_path)
+                    end
+                )
             end,
         })
     end
