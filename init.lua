@@ -9,5 +9,5 @@ if os.getenv("TMUX") == nil then
     )
     vim.api.nvim_set_current_buf(buf)
 else
-    require("core")
+    require("core.init")
 end

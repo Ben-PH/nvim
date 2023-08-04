@@ -1,1 +1,1 @@
-require("packer")
+require("core.packer")
