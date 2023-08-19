@@ -1,4 +1,4 @@
-if not os.getenv("TMUX")  then
+if not os.getenv("TMUX") then
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(
         buf,
