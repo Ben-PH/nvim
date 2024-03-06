@@ -46,6 +46,12 @@ return require("packer").startup(function(use)
 
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("theprimeagen/harpoon")
+    use({
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            "nvim-tree/nvim-web-devicons", -- optional
+        },
+    })
 
     use({
         "VonHeikemen/lsp-zero.nvim",
@@ -53,6 +59,7 @@ return require("packer").startup(function(use)
         requires = {
             -- LSP Support
             { "neovim/nvim-lspconfig" },
+            { "simrat39/rust-tools.nvim" },
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
 
