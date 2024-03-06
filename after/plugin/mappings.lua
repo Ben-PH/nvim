@@ -1,7 +1,6 @@
 local wk = require("which-key")
 
 wk.register({
-
     ["<M-b>"] = { "<cmd>Buffers<CR>", "Buffers" },
     ["<M-g>"] = { "<cmd>Rg!<CR>", "grep" },
     ["<M-f>"] = { "<cmd>Files<CR>", "find files" },
@@ -10,6 +9,7 @@ wk.register({
     ["<M-r>"] = { "<cmd>bn<CR>", "next buffer" },
     ["<M-/>"] = { "<cmd>nohlsearch<CR>", "Clear highlights" },
     ["<M-?>"] = { "<cmd>Commands<CR>", "commands" },
+    ["<M-t>"] = { "<cmd>NvimTreeToggle<CR>", "FileTree" },
     --["<M->"] = {"<cmd><CR>", ""},
 })
 

@@ -11,6 +11,10 @@ if not os.getenv("TMUX") then
     return
 end
 
+-- Replaced with nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require("core.init")
 
 -- place `project.lua` in project-root directory for per-project config.
