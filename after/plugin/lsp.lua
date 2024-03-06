@@ -20,24 +20,24 @@ lsp.set_preferences({
 lsp.setup()
 
 require("lspconfig").rust_analyzer.setup({
-	settings = {
-		["rust-analyzer.cargo.features"] = vim.g.rust_analyzer_cargo_features or ""
-	}
+    settings = {
+        ["rust-analyzer.cargo.features"] = vim.g.rust_analyzer_cargo_features
+            or "",
+    },
 })
 
 function _G.update_rust_analyzer_features()
     local clients = vim.lsp.get_active_clients()
     for _, client in ipairs(clients) do
-        if client.name == 'rust_analyzer' then
+        if client.name == "rust_analyzer" then
             client.workspace_did_change_configuration({
                 settings = {
-                    ["rust-analyzer.cargo.features"] = vim.g.rust_analyzer_cargo_features
-                }
+                    ["rust-analyzer.cargo.features"] = vim.g.rust_analyzer_cargo_features,
+                },
             })
         end
     end
 end
-
 
 require("lspconfig").lua_ls.setup({
     settings = {

@@ -46,11 +46,11 @@ return require("packer").startup(function(use)
 
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("theprimeagen/harpoon")
-    use ({
-	  'nvim-tree/nvim-tree.lua',
-	  requires = {
-	    'nvim-tree/nvim-web-devicons', -- optional
-	  },
+    use({
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            "nvim-tree/nvim-web-devicons", -- optional
+        },
     })
 
     use({
